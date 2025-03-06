@@ -32615,6 +32615,9 @@
 /obj/structure/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/structure/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/lower/starboard_midship_hallway)
 "hxF" = (
@@ -39608,10 +39611,6 @@
 	id = "laddernortheast";
 	name = "\improper North East Ladders Shutters"
 	},
-/obj/structure/machinery/door/poddoor/shutters/almayer{
-	id = "laddernortheast";
-	name = "\improper North East Ladders Shutters"
-	},
 /turf/open/floor/almayer/test_floor4,
 /area/rumayer/squads/alpha_delta_shared)
 "kJV" = (
@@ -46234,6 +46233,7 @@
 /obj/structure/pipes/standard/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/machinery/light,
 /turf/open/floor/almayer/green,
 /area/almayer/hallways/lower/starboard_midship_hallway)
 "nFz" = (
@@ -46673,6 +46673,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/structure/machinery/light,
 /turf/open/floor/almayer/bluefull,
 /area/rumayer/squads/alpha_delta_shared)
 "nRc" = (
@@ -53349,6 +53350,9 @@
 "qSq" = (
 /obj/structure/bed/chair{
 	dir = 4
+	},
+/obj/structure/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/almayer/redfull,
 /area/rumayer/squads/alpha_delta_shared)
@@ -69231,7 +69235,6 @@
 /obj/structure/pipes/standard/simple/hidden/supply{
 	dir = 9
 	},
-/obj/structure/machinery/light,
 /turf/open/floor/almayer/green,
 /area/almayer/hallways/lower/starboard_midship_hallway)
 "xPB" = (
@@ -108329,7 +108332,7 @@ nin
 lLK
 udm
 ufc
-hmV
+nZa
 sHh
 avZ
 sHh
