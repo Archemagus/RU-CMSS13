@@ -59,7 +59,8 @@
 	handful_state = "beanbag_slug"
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
-	if(!M || M == P.firer) return
+	if(!M || M == P.firer)
+		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		shake_camera(H, 2, 1)
@@ -173,6 +174,9 @@
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
 
 	damage = 55
+
+/datum/ammo/bullet/shotgun/buckshot/masterkey/on_hit_mob(mob/M,obj/projectile/P)
+	knockback(M,P,1)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"

@@ -418,25 +418,6 @@
 /obj/item/device/radio/headset/binary
 	initial_keys = list(/obj/item/device/encryptionkey/binary)
 
-/obj/item/device/radio/headset/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
-	name = "AI Subspace Transceiver"
-	desc = "Integrated AI radio transceiver."
-	icon = 'icons/obj/items/robot_component.dmi'
-	icon_state = "radio"
-	item_state = "headset"
-	item_icons = list(
-		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_lefthand.dmi',
-		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_righthand.dmi',
-	)
-	initial_keys = list(/obj/item/device/encryptionkey/ai_integrated)
-	var/myAi = null // Atlantis: Reference back to the AI which has this radio.
-	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
-
-/obj/item/device/radio/headset/ai_integrated/receive_range(freq, level)
-	if (disabledAi)
-		return -1 //Transceiver Disabled.
-	return ..(freq, level, 1)
-
 //MARINE HEADSETS
 
 /obj/item/device/radio/headset/almayer
@@ -545,6 +526,7 @@
 
 	inbuilt_tracking_options = list(
 		"Chief MP" = TRACKER_CMP,
+		"Military Warden" = TRACKER_WARDEN,
 	)
 
 /obj/item/device/radio/headset/almayer/marine/mp_honor
@@ -559,8 +541,25 @@
 
 	inbuilt_tracking_options = list(
 		"Commanding Officer" = TRACKER_CO,
+		"Executive Officer" = TRACKER_XO,
 		"Chief MP" = TRACKER_CMP,
-		"Executive Officer" = TRACKER_XO
+		"Military Warden" = TRACKER_WARDEN,
+	)
+
+/obj/item/device/radio/headset/almayer/mwcom
+	name = "marine Military Warden radio headset"
+	desc = "It seems oddly similar to the CMPs'... Smells like donuts too. Channels are as follows: :v - marine command, :p - military police, :n - engineering, :m - medbay, :u - requisitions, :a - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
+	icon_state = "sec_headset"
+	additional_hud_types = list(MOB_HUD_FACTION_CMB, MOB_HUD_FACTION_WY)
+	initial_keys = list(/obj/item/device/encryptionkey/cmpcom)
+	volume = RADIO_VOLUME_CRITICAL
+	locate_setting = TRACKER_CMP
+	misc_tracking = TRUE
+
+	inbuilt_tracking_options = list(
+		"Commanding Officer" = TRACKER_CO,
+		"Executive Officer" = TRACKER_XO,
+		"Chief MP" = TRACKER_CMP,
 	)
 
 /obj/item/device/radio/headset/almayer/cmpcom
@@ -570,6 +569,14 @@
 	additional_hud_types = list(MOB_HUD_FACTION_CMB, MOB_HUD_FACTION_WY)
 	initial_keys = list(/obj/item/device/encryptionkey/cmpcom)
 	volume = RADIO_VOLUME_CRITICAL
+	locate_setting = TRACKER_CO
+	misc_tracking = TRUE
+
+	inbuilt_tracking_options = list(
+		"Commanding Officer" = TRACKER_CO,
+		"Executive Officer" = TRACKER_XO,
+		"Military Warden" = TRACKER_WARDEN,
+	)
 
 /obj/item/device/radio/headset/almayer/mcom
 	name = "marine command radio headset"
@@ -670,7 +677,7 @@
 	)
 
 /obj/item/device/radio/headset/almayer/mcom/ai
-	initial_keys = list(/obj/item/device/encryptionkey/mcom/ai)
+	initial_keys = list(/obj/item/device/encryptionkey/cmpcom/synth/ai)
 	volume = RADIO_VOLUME_CRITICAL
 
 /obj/item/device/radio/headset/almayer/marine
@@ -680,7 +687,7 @@
 	name = "radio headset"
 	desc = "A radio headset."
 	frequency = CIA_FREQ
-	initial_keys = list(/obj/item/device/encryptionkey/cia, /obj/item/device/encryptionkey/soc, /obj/item/device/encryptionkey/listening_bug/freq_a)
+	initial_keys = list(/obj/item/device/encryptionkey/cia, /obj/item/device/encryptionkey/soc, /obj/item/device/encryptionkey/public)
 
 
 //############################## ALPHA ###############################
@@ -1178,6 +1185,8 @@
 	frequency = WY_WO_FREQ
 	icon_state = "pmc_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/mcom)
+	has_hud = TRUE
+	hud_type = MOB_HUD_FACTION_WO
 
 /obj/item/device/radio/headset/distress/contractor
 	name = "VAI Headset"
